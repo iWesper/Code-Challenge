@@ -24,8 +24,8 @@ const ConfirmationModal: React.FC<ModalProps> = ({
   if (!isOpen) return null;
 
   // Ensure amount is a number
-  const formattedAmount = typeof amount === 'number' ? amount.toFixed(7) : '0.0000000';
-  const formattedResult = typeof result === 'number' ? result.toFixed(7) : '0.0000000';
+const formattedAmount = typeof amount === 'number' ? amount.toString().replace(/\.?0+$/, '') : '0';
+const formattedResult = typeof result === 'number' ? result.toString().replace(/\.?0+$/, '') : '0';
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
