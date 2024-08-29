@@ -168,6 +168,11 @@ const CurrencySwap: React.FC = () => {
     setResult(swappedAmount);
   }, [currencies, amount, selectedCurrency, targetCurrency]);
 
+  // Function to filter out the selected source currency from the target options
+  const filteredTargetOptions = options.filter(
+    (option) => option.value !== selectedCurrency
+  );
+
   // Function to handle currency swap
   const handleSwap = () => {
     // Swap the selected and target currencies
@@ -449,10 +454,11 @@ const CurrencySwap: React.FC = () => {
                   </div>
                 </div>
                 <Select
-                  options={options}
+                  options={filteredTargetOptions}
                   value={
-                    options.find((option) => option.value === targetCurrency) ||
-                    null
+                    filteredTargetOptions.find(
+                      (option) => option.value === targetCurrency
+                    ) || null
                   }
                   onChange={(option) => {
                     setTargetCurrency(option?.value || null);
@@ -466,7 +472,7 @@ const CurrencySwap: React.FC = () => {
                 />
                 {result !== null ? (
                   <p className="ps-4 text-start cursor-not-allowed">
-                    {result.toFixed(7)}
+                    {result.toString().substring(0, 10)}
                   </p>
                 ) : (
                   <p className="ps-4 text-start cursor-not-allowed">0</p>
