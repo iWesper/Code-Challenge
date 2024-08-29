@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import CurrencySwap from './components/CurrencySwap';
 import './App.css';
 
