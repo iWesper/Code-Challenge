@@ -231,6 +231,26 @@ const CurrencySwap: React.FC = () => {
     setIsModalOpen(true);
   };
 
+  // Handle when selecting a new source currency
+  const handleSourceCurrencyChange = (option: CurrencyOption | null) => {
+    setSelectedCurrency(option?.value || null);
+
+    // Recalculate the insufficient balance state
+    if (option?.value) {
+      const sourceBalance = balances[option.value] || 0;
+      setIsInsufficientBalance(amount !== null && amount > sourceBalance);
+    }
+  };
+
+  // Handle when selecting a new target currency
+  const handleTargetCurrencyChange = (option: CurrencyOption | null) => {
+    setTargetCurrency(option?.value || null);
+
+    // Recalculate the insufficient balance state
+    const sourceBalance = balances[selectedCurrency || ""] || 0;
+    setIsInsufficientBalance(amount !== null && amount > sourceBalance);
+  };
+
   // When the user confirms the trade inside the modal, execute the trade and close the modal
   const handleConfirmTrade = () => {
     executeTradeCurrencies();
@@ -410,9 +430,7 @@ const CurrencySwap: React.FC = () => {
                       (option) => option.value === selectedCurrency
                     ) || null
                   }
-                  onChange={(option) => {
-                    setSelectedCurrency(option?.value || null);
-                  }}
+                  onChange={handleSourceCurrencyChange}
                   placeholder="Select source currency"
                   styles={customOptionStyles}
                   components={{
@@ -460,9 +478,7 @@ const CurrencySwap: React.FC = () => {
                       (option) => option.value === targetCurrency
                     ) || null
                   }
-                  onChange={(option) => {
-                    setTargetCurrency(option?.value || null);
-                  }}
+                  onChange={handleTargetCurrencyChange}
                   placeholder="Select target currency"
                   styles={customOptionStyles}
                   components={{
