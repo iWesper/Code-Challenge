@@ -1,10 +1,8 @@
 # 99Tech Code Challenge #1 #
 
-Note that if you fork this repository, your responses may be publicly linked to this repo.  
-Please submit your application along with the solutions attached or linked.   
+This is my solution to the 99Tech code challenge for Frontend Developer.
 
-It is important that you minimally attempt the problems, even if you do not arrive at a working solution.
+Problems 1, 2 and 3 are solved.
 
-## Submission ##
-You can either provide a link to an online repository, attach the solution in your application, or whichever method you prefer.
-We're cool as long as we can view your solution without any pain.
+Live test for problem 2:
+https://luis-costa-problem2.vercel.app/
